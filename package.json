@@ -49,9 +49,9 @@
       "title": "Stencil Generator configuration",
       "properties": {
         "stencilGenerator.quotes": {
-          "type": ["single", "double"],
+          "type": "string",
           "default": "single",
-          "description": "Defines the quote style (double or single) used in all templates"
+          "description": "Defines the quote style (\"single\" or \"double\") used in all templates"
         },
         "stencilGenerator.generateFolder": {
           "type": "boolean",
@@ -61,7 +61,7 @@
         "stencilGenerator.componentsDirectory": {
           "type": "string",
           "default": "./src/components",
-          "description": "Determines components generated from the Command Palette are placed"
+          "description": "Determines the directory where components generated from the Command Palette are placed. Defaults to \"./src/components\""
         },
         "stencilGenerator.component.create": {
           "type": "boolean",
@@ -108,12 +108,12 @@
     "commands": [
       {
         "command": "extension.newProjectComponent",
-        "title": "New Project – Component",
+        "title": "New Stencil Project – Component",
         "category": "Stencil Generator"
       },
       {
         "command": "extension.newProjectApp",
-        "title": "New Project – App",
+        "title": "New Stencil Project – App",
         "category": "Stencil Generator"
       },
       {
@@ -122,7 +122,7 @@
       },
       {
         "command": "extension.generateComponentFilesFromCommandPalette",
-        "title": "New Component",
+        "title": "New Stencil Component",
         "category": "Stencil Generator"
       }
     ],

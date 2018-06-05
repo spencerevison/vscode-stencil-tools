@@ -110,7 +110,13 @@ export class FileHelper {
     }
 
     private static getSelector(componentName: string, config: Config) {
-        return `${(config.component.prefix) ? config.component.prefix + '-' : ''}${changeCase.paramCase(componentName)}`;
+        let prefix = config.component.prefix;
+        if (prefix) {
+            if (prefix.endsWith('-')) { prefix = prefix.slice(0, -1) }
+            return `${prefix}-${changeCase.paramCase(componentName)}`;
+        } else {
+            return changeCase.paramCase(componentName);
+        }
     }
 
     private static getShadow(config: Config) {
