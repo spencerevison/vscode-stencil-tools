@@ -67,12 +67,13 @@ export class FileHelper {
         } else if (uri) {
             contextMenuSourcePath = path.dirname(uri.fsPath);
         } else {
-            contextMenuSourcePath = path.relative(vscode.workspace.rootPath, path.normalize(config.componentsDirectory));
+            contextMenuSourcePath = path.join(vscode.workspace.rootPath, path.normalize(config.componentsDirectory));
         }
 
         let componentDir = `${contextMenuSourcePath}`;
         if (config.generateFolder) {
             componentDir = `${contextMenuSourcePath}/${componentName}`;
+            console.log('MKDIR', componentDir);
             fse.mkdirsSync(componentDir);
         }
 
@@ -98,7 +99,7 @@ export class FileHelper {
     }
 
     private static getBlockOpenAndClose(config: Config): { open: string, close: string } {
-        return config.style.extension === 'sass' ? { open: '', close: ''} : { open: '{', close: '}'}
+        return config.style.extension === 'sass' ? { open: '', close: ''} : { open: ' {', close: '}'}
     }
     
     private static getStyleSelector(componentName: string, config: Config) {
