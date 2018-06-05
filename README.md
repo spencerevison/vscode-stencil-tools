@@ -21,16 +21,19 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
     - Select "Generate Stencil Component"
     - Enter your component name in the prompt
 - From the Command Palette
-    - Select "> Stencil Generator: New Stencil Component"
+    - Select "> Stencil: New Component"
     - Enter your component name in the prompt
 
 ### Start a Stencil Project
 - From the Command Palette
-    - Select "> Stencil Generator: Start Stencil Project - App" or "> Stencil Generator: Start Stencil Project - Component"
+    - Select "> Stencil: Start Project - App" or "> Stencil: Start Project - Component"
     - Select a Repository Location - this is where your Stencil Starter will be cloned
     - Open the new repository or add it to your workspace
     - run `git remote rm origin` and `npm install` as outlined [in the docs](https://stenciljs.com/docs/getting-started)
 
+### Open the Stencil Docs
+- From the Command Palette
+    - Select "> Stencil: Open Docs"
 
 
 ```json
