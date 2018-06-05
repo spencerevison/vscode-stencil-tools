@@ -80,6 +80,25 @@ export class FileHelper {
         return componentDir;
     }
 
+    public static createTest(componentDir: string, componentName: string, config: Config) {
+        let templateFileName = this.assetRootDir + '/templates/component.spec.template';
+
+        let testContent = fs.readFileSync(templateFileName).toString()
+            .replace(/{selector}/g, this.getSelector(componentName, config))
+            .replace(/{className}/g, changeCase.pascalCase(componentName))
+            .replace(/{quotes}/g, this.getQuotes(config));
+
+        let filename = `${componentDir}/${componentName}.${config.test.extension}`;
+
+        if (config.test.create) {
+            return this.createFile(filename, testContent)
+                .map(result => filename);
+        }
+        else {
+            return Observable.of('');
+        }
+    }
+
     public static getDefaultConfig(): any {
         let content = fs.readFileSync( this.assetRootDir + '/config/config.json' ).toString();
         content = content.replace(/\${workspaceRoot}/g, vscode.workspace.rootPath);

@@ -10,11 +10,17 @@ export interface StyleConfig extends WorkspaceConfiguration {
     create?: boolean,
     extension?: string
 };
+export interface TestConfig extends WorkspaceConfiguration {
+    create?: boolean,
+    extension?: string
+};
+
 
 export interface Config extends WorkspaceConfiguration {
     quotes?: 'single' | 'double',
     generateFolder?: boolean,
     componentsDirectory?: string,
     component: ComponentConfig,
-    style: StyleConfig
+    style: StyleConfig,
+    test: TestConfig
 }

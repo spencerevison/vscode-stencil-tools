@@ -83,6 +83,16 @@
           "default": false,
           "description": "TODO"
         },
+        "stencilGenerator.test.create": {
+          "type": "boolean",
+          "default": true,
+          "description": "TODO"
+        },
+        "stencilGenerator.test.extension": {
+          "type": "string",
+          "default": "spec.tsx",
+          "description": "TODO"
+        },
         "stencilGenerator.style.create": {
           "type": "boolean",
           "default": true,
@@ -96,6 +106,16 @@
     }
     },
     "commands": [
+      {
+        "command": "extension.newProjectComponent",
+        "title": "New Project – Component",
+        "category": "Stencil Generator"
+      },
+      {
+        "command": "extension.newProjectApp",
+        "title": "New Project – App",
+        "category": "Stencil Generator"
+      },
       {
         "command": "extension.generateComponentFiles",
         "title": "Generate Stencil Component"
@@ -117,7 +137,7 @@
       "explorer/context": [{
           "command": "extension.generateComponentFiles",
           "when": "explorerResourceIsFolder && isStencilProject",
-          "group": "navigation@3"
+          "group": "Stencil@0"
       }]
     }
   },
