@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { FileHelper } from './FileHelper';
 import { Config } from './config.interface';
 
+import OpenDocs from './commands/open-docs';
 import StartProject, { STENCIL_STARTER } from './commands/start-project';
 import GenerateComponent from './commands/generate-component';
 
@@ -21,6 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('setContext', 'isStencilProject', true);
 
     const commands = new Map([
+        ['openDocs', () => OpenDocs()],
         ['startProjectComponent', () => StartProject(STENCIL_STARTER.COMPONENT)],
         ['startProjectApp', () => StartProject(STENCIL_STARTER.APP)],
         ['generateComponentFilesFromCommandPalette', () => GenerateComponent(null)],

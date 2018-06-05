@@ -107,14 +107,19 @@
     },
     "commands": [
       {
-        "command": "extension.newProjectComponent",
-        "title": "New Stencil Project – Component",
-        "category": "Stencil Generator"
+        "command": "extension.openDocs",
+        "title": "Open Docs",
+        "category": "Stencil"
       },
       {
-        "command": "extension.newProjectApp",
-        "title": "New Stencil Project – App",
-        "category": "Stencil Generator"
+        "command": "extension.startProjectComponent",
+        "title": "Start Project - Component",
+        "category": "Stencil"
+      },
+      {
+        "command": "extension.startProjectApp",
+        "title": "Start Project - App",
+        "category": "Stencil"
       },
       {
         "command": "extension.generateComponentFiles",
@@ -122,12 +127,15 @@
       },
       {
         "command": "extension.generateComponentFilesFromCommandPalette",
-        "title": "New Stencil Component",
-        "category": "Stencil Generator"
+        "title": "New Component",
+        "category": "Stencil"
       }
     ],
     "menus": {
       "commandPalette": [{
+          "command": "extension.openDocs",
+          "when": "isStencilProject"
+        }, {
         "command": "extension.generateComponentFilesFromCommandPalette",
         "when": "isStencilProject"
       }, {
