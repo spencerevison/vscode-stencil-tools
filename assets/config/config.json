@@ -1,17 +1,10 @@
 {
-    "global": {
-        "quotes": "single",
-        "generateFolder": true
-    },
-    "files": {
-        "component": {
-            "create": true,
-            "shadow": false,
-            "extension": "tsx"
-        },
-        "style": {
-            "create": true,
-            "extension": "scss"
-        }
-    }
+    "stencilGenerator.quotes": "single",
+    "stencilGenerator.generateFolder": true,
+    "stencilGenerator.component.create": true,
+    "stencilGenerator.component.extension": "tsx",
+    "stencilGenerator.component.prefix": false,
+    "stencilGenerator.component.shadow": false,
+    "stencilGenerator.style.create": true,
+    "stencilGenerator.style.extension": "css"
 }

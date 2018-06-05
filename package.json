@@ -38,6 +38,7 @@
     "tsx"
   ],
   "activationEvents": [
+    "workspaceContains:**/stencil.config.js",
     "onCommand:extension.generateComponentFiles"
   ],
   "main": "./out/src/extension",
@@ -45,32 +46,85 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "stencilGenerator",
+      "title": "Stencil Generator configuration",
       "properties": {
-        "stencilGenerator.config": {
-          "type": "object",
-          "description": "vscode-stencil-generator configuration object. See: https://github.com/natemoo-re/vscode-stencil-generator/blob/master/README.md for more information."
+        "stencilGenerator.quotes": {
+          "type": ["single", "double"],
+          "default": "single",
+          "description": "TODO"
+        },
+        "stencilGenerator.generateFolder": {
+          "type": "boolean",
+          "default": true,
+          "description": "TODO"
+        },
+        "stencilGenerator.componentsDirectory": {
+          "type": "string",
+          "default": "./src/components",
+          "description": "TODO"
+        },
+        "stencilGenerator.component.create": {
+          "type": "boolean",
+          "default": true,
+          "description": "TODO"
+        },
+        "stencilGenerator.component.extension": {
+          "type": "string",
+          "default": "tsx",
+          "description": "TODO"
+        },
+        "stencilGenerator.component.prefix": {
+          "type": ["string", false],
+          "default": false,
+          "description": "TODO"
+        },
+        "stencilGenerator.component.shadow": {
+          "type": "boolean",
+          "default": false,
+          "description": "TODO"
+        },
+        "stencilGenerator.style.create": {
+          "type": "boolean",
+          "default": true,
+          "description": "TODO"
+        },
+        "stencilGenerator.style.extension": {
+          "type": "string",
+          "default": "css",
+          "description": "TODO"
         }
-      }
+    }
     },
     "commands": [
       {
         "command": "extension.generateComponentFiles",
-        "title": "New Stencil Component"
+        "title": "Generate Stencil Component"
+      },
+      {
+        "command": "extension.generateComponentFilesFromCommandPalette",
+        "title": "New Component",
+        "category": "Stencil Generator"
       }
     ],
     "menus": {
-      "explorer/context": [
-        {
+      "commandPalette": [{
+        "command": "extension.generateComponentFilesFromCommandPalette",
+        "when": "isStencilProject"
+      }, {
+        "command": "extension.generateComponentFiles",
+        "when": "!resourceIsFile"
+      }],
+      "explorer/context": [{
           "command": "extension.generateComponentFiles",
-          "group": "navigation"
-        }
-      ]
+          "when": "explorerResourceIsFolder && isStencilProject",
+          "group": "navigation@3"
+      }]
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
+    "vscode:prepublish": "npm run build",
     "compile": "tsc -watch -p ./",
+    "build": "tsc -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
@@ -84,7 +138,6 @@
     "change-case": "^3.0.0",
     "fs": "0.0.1-security",
     "fs-extra": "^0.30.0",
-    "rxjs": "^5.0.0-rc.1",
-    "lodash": "^4.17.4"
+    "rxjs": "^5.0.0-rc.1"
   }
 }

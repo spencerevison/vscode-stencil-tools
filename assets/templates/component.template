@@ -5,11 +5,13 @@ import { Component } from {quotes}@stencil/core{quotes};
     tag: {quotes}{selector}{quotes},
     styleUrl: {quotes}{styleUrl}{quotes}{shadow}
 })
-export class {className}Component {
+export class {className} {
 
     render() {
         return (
-            <div>{className}Component</div>
+            <div>
+                <p>Hello {className}!</p>
+            </div>
         );
     }
 }

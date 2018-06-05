@@ -1,8 +1,20 @@
-import { FileConfig } from './config/files.interface';
-import { GlobalConfig } from './config/global.interface';
 import { WorkspaceConfiguration } from 'vscode';
 
-export interface Config extends WorkspaceConfiguration {
-    global: GlobalConfig,
-    files: FileConfig
+export interface ComponentConfig extends WorkspaceConfiguration {
+    create?: boolean,
+    extension?: string,
+    prefix?: string,
+    shadow?: boolean
+}
+export interface StyleConfig extends WorkspaceConfiguration {
+    create?: boolean,
+    extension?: string
 };
+
+export interface Config extends WorkspaceConfiguration {
+    quotes?: 'single' | 'double',
+    generateFolder?: boolean,
+    componentsDirectory?: string,
+    component: ComponentConfig,
+    style: StyleConfig
+}
