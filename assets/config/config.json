@@ -6,19 +6,12 @@
     "files": {
         "component": {
             "create": true,
-            "extension": "ts"
+            "shadow": false,
+            "extension": "tsx"
         },
-        "css": {
+        "style": {
             "create": true,
             "extension": "scss"
-        },
-        "html": {
-            "create": true,
-            "extension": "html"
-        },
-        "module": {
-            "create": true,
-            "extension": "ts"
         }
     }
 }

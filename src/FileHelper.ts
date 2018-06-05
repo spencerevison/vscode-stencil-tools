@@ -1,6 +1,4 @@
-import { HTMLConfig } from './config/types/html-config.interface';
-import { CSSConfig } from './config/types/css-config.interface';
-import { ModuleConfig } from './config/types/module-config.interface';
+import { StyleConfig } from './config/types/style-config.interface';
 import { FileConfig } from './config/files.interface';
 import { GlobalConfig } from './config/global.interface';
 import { Config } from './config.interface';
@@ -10,6 +8,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as changeCase from 'change-case';
 import { Observable } from 'rxjs';
+import { ADDRCONFIG } from 'dns';
+import { ComponentConfig } from './config/types/component-config.interface';
 
 export class FileHelper {
     private static createFile = <(file: string, data: string) => Observable<{}>>Observable.bindNodeCallback(fse.outputFile);
@@ -22,13 +22,13 @@ export class FileHelper {
         }
 
         let componentContent = fs.readFileSync( templateFileName ).toString()
-            .replace(/{selector}/g, componentName)
-            .replace(/{templateUrl}/g, `${componentName}.component.html`)
-            .replace(/{styleUrls}/g, `${componentName}.component.${config.css.extension}`)
+            .replace(/{selector}/g, this.getSelector(componentName))
+            .replace(/{styleUrl}/g, `${componentName}.${config.style.extension}`)
             .replace(/{className}/g, changeCase.pascalCase(componentName))
+            .replace(/{shadow}/g, this.getShadow(config))
             .replace(/{quotes}/g, this.getQuotes(globalConfig));
 
-        let filename = `${componentDir}/${componentName}.component.${config.component.extension}`;
+        let filename = `${componentDir}/${componentName}.${config.component.extension}`;
 
         if (config.component.create) {
             return this.createFile(filename, componentContent)
@@ -39,58 +39,20 @@ export class FileHelper {
         }
     };
 
-    public static createModule(componentDir: string, componentName: string, globalConfig: GlobalConfig, config: ModuleConfig): Observable<string> {
-        let templateFileName = this.assetRootDir + '/templates/module.template';
-        if (config.template) {
-            templateFileName = this.resolveWorkspaceRoot(config.template);
+    public static createStyle(componentDir: string, componentName: string, config: FileConfig): Observable<string> {
+        const { style } = config;
+        let templateFileName = this.assetRootDir + '/templates/style.template';
+        if (style.template) {
+            templateFileName = this.resolveWorkspaceRoot(style.template);
         }
 
-        let moduleContent = fs.readFileSync( templateFileName ).toString()
-            .replace(/{componentName}/g, componentName)
-            .replace(/{className}/g, changeCase.pascalCase(componentName))
-            .replace(/{quotes}/g, this.getQuotes(globalConfig));
-
-        let filename = `${componentDir}/${componentName}.module.${config.extension}`;
-
-        if (config.create) {
-            return this.createFile(filename, moduleContent)
-                .map(result => filename);
-        }
-        else {
-            return Observable.of('');
-        }
-    };
-
-    public static createHtml(componentDir: string, componentName: string, config: HTMLConfig): Observable<string> {
-        let templateFileName = this.assetRootDir + '/templates/html.template';
-        if (config.template) {
-            templateFileName = this.resolveWorkspaceRoot(config.template);
-        }
-
-        let htmlContent = fs.readFileSync( templateFileName ).toString();
-
-        let filename = `${componentDir}/${componentName}.component.${config.extension}`;
-        if (config.create) {
-            return this.createFile(filename, htmlContent)
-                .map(result => filename);
-        }
-        else {
-            return Observable.of('');
-        }
-    };
-
-    public static createCss(componentDir: string, componentName: string, config: CSSConfig): Observable<string> {
-        let templateFileName = this.assetRootDir + '/templates/css.template';
-        if (config.template) {
-            templateFileName = this.resolveWorkspaceRoot(config.template);
-        }
-
-        let cssContent = fs.readFileSync( templateFileName ).toString();
+        let styleContent = fs.readFileSync(templateFileName).toString()
+            .replace(/{styleSelector}/g, this.getStyleSelector(componentName, config));
 
 
-        let filename = `${componentDir}/${componentName}.component.${config.extension}`;
-        if (config.create) {
-            return this.createFile(filename, cssContent)
+        let filename = `${componentDir}/${componentName}.${style.extension}`;
+        if (style.create) {
+            return this.createFile(filename, styleContent)
                 .map(result => filename);
         }
         else {
@@ -126,6 +88,18 @@ export class FileHelper {
 
     public static resolveWorkspaceRoot(path: string): string {
         return path.replace('${workspaceRoot}', vscode.workspace.rootPath);
+    }
+
+    private static getSelector(componentName: string) {
+        return changeCase.paramCase(componentName);
+    }
+
+    private static getShadow(config: FileConfig) {
+        return config.component.shadow ? ',\n    shadow: true' : ''
+    }
+    
+    private static getStyleSelector(componentName: string, config: FileConfig) {
+        return config.component.shadow ? ':root' : this.getSelector(componentName);
     }
 
     private static getQuotes(config: GlobalConfig) {
