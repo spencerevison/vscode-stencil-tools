@@ -4,7 +4,8 @@ export interface ComponentConfig extends WorkspaceConfiguration {
     create?: boolean,
     extension?: string,
     prefix?: string,
-    shadow?: boolean
+    shadow?: boolean,
+    imports?: string[]|false
 }
 export interface StyleConfig extends WorkspaceConfiguration {
     create?: boolean,

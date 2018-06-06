@@ -16,7 +16,8 @@ export class FileHelper {
             templateFileName = this.resolveWorkspaceRoot(config.component.template);
         }
 
-        let componentContent = fs.readFileSync( templateFileName ).toString()
+        let componentContent = fs.readFileSync(templateFileName).toString()
+            .replace(/{additionalImports}/g, this.getImports(config))
             .replace(/{selector}/g, this.getSelector(componentName, config))
             .replace(/{styleUrl}/g, `${componentName}.${config.style.extension}`)
             .replace(/{className}/g, changeCase.pascalCase(componentName))
@@ -149,12 +150,16 @@ export class FileHelper {
         return config.component.shadow ? ',\n    shadow: true' : ''
     }
 
+    private static getImports(config: Config) {
+        return (config.component.imports === false) ? '' : `, ${config.component.imports.join()}`;
+    }
+
     private static getBlockOpenAndClose(config: Config): { open: string, close: string } {
         return config.style.extension === 'sass' ? { open: '', close: ''} : { open: ' {', close: '}'}
     }
     
     private static getStyleSelector(componentName: string, config: Config) {
-        return config.component.shadow ? ':root' : this.getSelector(componentName, config);
+        return config.component.shadow ? ':host' : this.getSelector(componentName, config);
     }
 
     private static getQuotes(config: Config) {

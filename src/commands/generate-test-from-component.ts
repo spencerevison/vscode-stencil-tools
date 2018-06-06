@@ -24,7 +24,7 @@ export default function generateTestFromComponent() {
     if (!componentMeta) {
         throw new Error('Please open a file containing a Stencil Component');
     } else {
-        const componentClass = componentMeta[2].trim().replace(/extends.*/, '');
+        const componentClass = componentMeta[2].trim().replace(/extends.*/, '').trim();
         const { tag: componentSelector } = json(componentMeta[1].trim());
         let fromFilePath = doc.fileName.replace(path.extname(doc.fileName), '');
 

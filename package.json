@@ -1,25 +1,25 @@
 {
-  "name": "vscode-stencil-generator",
-  "displayName": "Stencil Generator",
-  "description": "Generates Stencil components files",
+  "name": "vscode-stencil-tools",
+  "displayName": "Stencil Tools",
+  "description": "Helpful utilities for StencilJS Projects",
   "version": "0.0.1",
   "publisher": "natemoo-re",
   "author": {
     "name": "Nate Moore",
     "email": "nate@natemoo.re"
   },
-  "homepage": "https://github.com/natemoo-re/vscode-stencil-generator",
+  "homepage": "https://github.com/natemoo-re/vscode-stencil-tools",
   "galleryBanner": {
     "color": "#0273D4",
     "theme": "dark"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/natemoo-re/vscode-stencil-generator.git"
+    "url": "https://github.com/natemoo-re/vscode-stencil-tools.git"
   },
   "bugs": {
-    "url": "https://github.com/natemoo-re/vscode-stencil-generator/issues",
-    "email": "dmitriybaikov@gmail.com"
+    "url": "https://github.com/natemoo-re/vscode-stencil-tools/issues",
+    "email": "nate@natemoo.re"
   },
   "license": "MIT",
   "engines": {
@@ -72,6 +72,11 @@
           "type": "string",
           "default": "tsx",
           "description": "The extension of a component file (no leading period)"
+        },
+        "stencilGenerator.component.imports": {
+          "type": ["array", false],
+          "default": false,
+          "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
         },
         "stencilGenerator.component.prefix": {
           "type": [
