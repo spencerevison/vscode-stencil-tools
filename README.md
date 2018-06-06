@@ -54,7 +54,7 @@ Easy to configure! See [#Configuration](#configuration)
 
 ## Configuration
 
-```json
+```js
 {
         /* Defines the quote style ("single" or "double") used in all templates */
         "stencilGenerator.quotes": "single",
