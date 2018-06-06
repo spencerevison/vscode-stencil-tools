@@ -1,5 +1,5 @@
 import { TestWindow } from {quotes}@stencil/core/testing{quotes};
-import { {className} } from {quotes}./{selector}{quotes};
+import { {className} } from {quotes}./{fileName}{quotes};
 
 describe({quotes}{selector}{quotes}, () => {
   it({quotes}should build{quotes}, () => {
@@ -17,7 +17,7 @@ describe({quotes}{selector}{quotes}, () => {
       });
     });
 
-    // Unit Tests should go here - https://stenciljs.com/docs/unit-testing
+    // Write you Unit Tests here - https://stenciljs.com/docs/unit-testing
 
   });
 });

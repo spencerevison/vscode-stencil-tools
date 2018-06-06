@@ -5,7 +5,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as changeCase from 'change-case';
 import { Observable } from 'rxjs';
-import { ADDRCONFIG } from 'dns';
 
 export class FileHelper {
     private static createFile = <(file: string, data: string) => Observable<{}>>Observable.bindNodeCallback(fse.outputFile);
@@ -73,7 +72,6 @@ export class FileHelper {
         let componentDir = `${contextMenuSourcePath}`;
         if (config.generateFolder) {
             componentDir = `${contextMenuSourcePath}/${componentName}`;
-            console.log('MKDIR', componentDir);
             fse.mkdirsSync(componentDir);
         }
 
@@ -84,6 +82,7 @@ export class FileHelper {
         let templateFileName = this.assetRootDir + '/templates/component.spec.template';
 
         let testContent = fs.readFileSync(templateFileName).toString()
+            .replace(/{fileName}/g, componentName)
             .replace(/{selector}/g, this.getSelector(componentName, config))
             .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{quotes}/g, this.getQuotes(config));
@@ -97,6 +96,33 @@ export class FileHelper {
         else {
             return Observable.of('');
         }
+    }
+
+    public static createTestFromComponent(fromFilePath: string, componentClass: string, componentSelector: string, config: Config) {
+        let templateFileName = this.assetRootDir + '/templates/component.spec.template';
+        let fileImport = `${path.basename(fromFilePath)}`;
+
+        let testContent = fs.readFileSync(templateFileName).toString()
+            .replace(/{fileName}/g, fileImport)
+            .replace(/{selector}/g, componentSelector)
+            .replace(/{className}/g, componentClass)
+            .replace(/{quotes}/g, this.getQuotes(config));
+
+        let filename = `${fromFilePath}.${config.test.extension}`;
+        try {
+            if (fs.lstatSync(filename).isFile()) {
+                return Observable.of('');
+            }
+        } catch(e) {
+            console.log(filename)
+            return this.createFile(filename, testContent)
+                .map(result => filename);
+        }
+        // if (filename && fs.lstatSync(filename).isFile()) {
+        //     throw new Error();
+        // } else {
+            
+        // }
     }
 
     public static getDefaultConfig(): any {

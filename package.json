@@ -74,7 +74,10 @@
           "description": "The extension of a component file (no leading period)"
         },
         "stencilGenerator.component.prefix": {
-          "type": ["string", false],
+          "type": [
+            "string",
+            false
+          ],
           "default": false,
           "description": "Prepends a given prefix to the selector for generated components. Best practice is to use a unique selector, unrelated to \"stencil\". See https://stenciljs.com/docs/style-guide#prefix"
         },
@@ -103,7 +106,7 @@
           "default": "css",
           "description": "The extension of a test file (no leading period). This is how you generate \"scss\" of \"sass\" files instead of \"css\" (default)"
         }
-    }
+      }
     },
     "commands": [
       {
@@ -129,24 +132,39 @@
         "command": "extension.generateComponentFilesFromCommandPalette",
         "title": "New Component",
         "category": "Stencil"
+      },
+      {
+        "command": "extension.generateTestFromComponent",
+        "title": "New Test for Component",
+        "category": "Stencil"
       }
     ],
     "menus": {
-      "commandPalette": [{
+      "commandPalette": [
+        {
           "command": "extension.openDocs",
           "when": "isStencilProject"
-        }, {
-        "command": "extension.generateComponentFilesFromCommandPalette",
-        "when": "isStencilProject"
-      }, {
-        "command": "extension.generateComponentFiles",
-        "when": "!resourceIsFile"
-      }],
-      "explorer/context": [{
+        },
+        {
+          "command": "extension.generateComponentFilesFromCommandPalette",
+          "when": "isStencilProject"
+        },
+        {
+          "command": "extension.generateComponentFiles",
+          "when": "!resourceIsFile"
+        },
+        {
+          "command": "extension.generateTestFromComponent",
+          "when": "isStencilProject && resourceExtname == .tsx"
+        }
+      ],
+      "explorer/context": [
+        {
           "command": "extension.generateComponentFiles",
           "when": "explorerResourceIsFolder && isStencilProject",
           "group": "Stencil@0"
-      }]
+        }
+      ]
     }
   },
   "scripts": {
@@ -163,9 +181,11 @@
     "@types/mocha": "^2.2.32"
   },
   "dependencies": {
+    "@types/jsonic": "^0.3.0",
     "change-case": "^3.0.0",
     "fs": "0.0.1-security",
     "fs-extra": "^0.30.0",
+    "jsonic": "^0.3.0",
     "rxjs": "^5.0.0-rc.1"
   }
 }
