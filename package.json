@@ -147,6 +147,14 @@
     "menus": {
       "commandPalette": [
         {
+          "command": "extension.startProjectComponent",
+          "when": "isStencilProject"
+        },
+        {
+          "command": "extension.startProjectApp",
+          "when": "isStencilProject"
+        },
+        {
           "command": "extension.openDocs",
           "when": "isStencilProject"
         },

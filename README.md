@@ -16,6 +16,7 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
 ## Usage
 
 ### Generate a Component
+![New Component](./assets/tutorial/new-component.gif)
 - From the File Explorer
     - Right click on a file or folder
     - Select "Generate Stencil Component"
@@ -24,7 +25,13 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
     - Select "> Stencil: New Component"
     - Enter your component name in the prompt
 
+### Generate a Test from a Component
+![New Test](./assets/tutorial/new-test.gif)
+- From the Command Palette, when a Component is open
+    - Select "> Stencil: New Test for Component"
+
 ### Start a Stencil Project
+![Start a Project](./assets/tutorial/start-project.gif)
 - From the Command Palette
     - Select "> Stencil: Start Project - App" or "> Stencil: Start Project - Component"
     - Select a Repository Location - this is where your Stencil Starter will be cloned
@@ -32,6 +39,7 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
     - run `git remote rm origin` and `npm install` as outlined [in the docs](https://stenciljs.com/docs/getting-started)
 
 ### Open the Stencil Docs
+![Open Docs](./assets/tutorial/open-docs.gif)
 - From the Command Palette
     - Select "> Stencil: Open Docs"
 
