@@ -1,5 +1,6 @@
 <!-- [![Version](http://vsmarketplacebadge.apphb.com/version/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) [![Installs](http://vsmarketplacebadge.apphb.com/installs/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) -->
-# Stencil Generator Extension for VSCode
+# Stencil Tools 
+Extension for VS Code
 ![New Component](./assets/tutorial/new-component.gif)
 
 ## Description
