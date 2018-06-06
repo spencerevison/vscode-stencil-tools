@@ -1,11 +1,12 @@
 <!-- [![Version](http://vsmarketplacebadge.apphb.com/version/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) [![Installs](http://vsmarketplacebadge.apphb.com/installs/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) -->
 # Stencil Generator Extension for VSCode
+![New Component](./assets/tutorial/new-component.gif)
 
 ## Description
 This that makes working with [Stencil](https://stenciljs.com/) projects a breeze. 
 ### Features
 - Automatically creates Stencil components (`component.tsx`, `component.spec.tsx`, `component.css`)
-- Configurable component templates [see Configuration](#configuration)
+- Configurable component templates – see [#Configuration](#configuration)
     - Add a custom prefix to generated component tags
     - Easily toggle on/off @Component({ shadow: true })
     - Change the extension of any generated file
@@ -24,6 +25,13 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
 - From the Command Palette
     - Select "> Stencil: New Component"
     - Enter your component name in the prompt
+
+### Generate a Component with a Prefix
+Easy to configure! See [#Configuration](#configuration)
+![New Component with Prefix](./assets/tutorial/component-prefix.gif)
+- Open Workspace or User Settings
+- Set "stencilGenerator.component.prefix" to "your-prefix"
+- Generate your component as usual
 
 ### Generate a Test from a Component
 ![New Test](./assets/tutorial/new-test.gif)
@@ -44,9 +52,39 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
     - Select "> Stencil: Open Docs"
 
 
+## Configuration
+
 ```json
 {
-    
+        /* Defines the quote style ("single" or "double") used in all templates */
+        "stencilGenerator.quotes": "single",
+        /* Determines whether component files are generated within their own folder (true) or outside of a folder (false) */
+        "stencilGenerator.generateFolder": true,
+        /* Determines the directory where components generated from the Command Palette are placed */
+        "stencilGenerator.componentsDirectory": "./src/components",
+        /* Determines if a component file should be created when a new component is generated */
+        "stencilGenerator.component.create": true,
+        /* The extension of a component file (no leading period) */
+        "stencilGenerator.component.extension": "tsx",
+        /* A list of additional imports from '@stencil/core' to be included when a component is generated */
+        "stencilGenerator.component.imports": false,
+        /* Prepends a given prefix to the selector for generated components. 
+         * Best practice is to use a unique selector, unrelated to "stencil". 
+         * See https://stenciljs.com/docs/style-guide#prefix */
+        "stencilGenerator.component.prefix": false,
+        /* Determines whether generated components should be created with ShadowDOM support. 
+         * Also changes the selector in Style from Scoped CSS to :host */
+        "stencilGenerator.component.shadow": false,
+        /* Determines if a test file should be created when a new component is generated */
+        "stencilGenerator.test.create": true,
+        /* The extension of a test file (no leading period).
+         * Typically something like "spec.tsx" (default) or "test.tsx" */
+        "stencilGenerator.test.extension": "spec.tsx",
+        /* Determines if a style file should be created when a new component is generated */
+        "stencilGenerator.style.create": true,
+        /* The extension of a test file (no leading period). 
+         * This is how you generate "scss" of "sass" files instead of "css" (default) */
+        "stencilGenerator.style.extension": "css"
 }
 ```
 
@@ -55,5 +93,4 @@ This that makes working with [Stencil](https://stenciljs.com/) projects a breeze
 - Publish the extension!
 
 ## Bugs
-
-Please report [here](https://github.com/dbaikov/vscode-angular2-component-generator/issues)
+Please report [here](https://github.com/natemoo-re/vscode-stencil-tools/issues)
