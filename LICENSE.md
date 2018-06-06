@@ -1,4 +1,4 @@
-Copyright (c) 2016 Dmytro Baikov
+Copyright (c) 2018 Nate Moore
 
 All rights reserved.
 
