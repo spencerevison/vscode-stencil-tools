@@ -2,7 +2,7 @@
   "name": "vscode-stencil-tools",
   "displayName": "Stencil Tools",
   "description": "Helpful utilities for StencilJS Projects",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "natemoo-re",
   "author": {
     "name": "Nate Moore",
@@ -74,7 +74,10 @@
           "description": "The extension of a component file (no leading period)"
         },
         "stencilTools.component.imports": {
-          "type": ["array", false],
+          "type": [
+            "array",
+            false
+          ],
           "default": false,
           "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
         },
