@@ -1,4 +1,5 @@
-<!-- [![Version](http://vsmarketplacebadge.apphb.com/version/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) [![Installs](http://vsmarketplacebadge.apphb.com/installs/dbaikov.vscode-angular2-component-generator.svg)](https://marketplace.visualstudio.com/items?itemName=dbaikov.vscode-angular2-component-generator) -->
+[![Version](http://vsmarketplacebadge.apphb.com/version/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools) 
+[![Installs](http://vsmarketplacebadge.apphb.com/installs/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools)
 # Stencil Tools 
 Extension for VS Code
 
@@ -71,8 +72,8 @@ stencilTools.style.create           | true                  | Determines if a st
 stencilTools.style.extension        | "css"                 | The extension of a test file (no leading period). This is how you generate "scss" of "sass" files instead of "css" (default)                  |
 
 ## Changelog
-#### 0.0.1 (2018-06-05)
-- Publish the extension!
+#### 1.0.0 (2018-06-06)
+- Published the extension to VS Code Marketplace
 
 ## Bugs
 Please report [here](https://github.com/natemoo-re/vscode-stencil-tools/issues)
