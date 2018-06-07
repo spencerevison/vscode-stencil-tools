@@ -3,16 +3,17 @@ import * as changeCase from 'change-case';
 import * as path from 'path';
 import { Observable } from 'rxjs';
 
+import { extensionTitle } from '../extension';
 import { FileHelper } from '../FileHelper';
 import { Config } from '../config.interface';
 import * as json from 'jsonic';
+
 
 export default function generateTestFromComponent() {
     const workspace = vscode.workspace;
     const editor = vscode.window.activeTextEditor;
     const doc = editor.document;
     
-    const extensionTitle = 'stencilGenerator';
     let configPrefix: string = extensionTitle;
     let config: Config = <Config>workspace.getConfiguration(configPrefix);
     

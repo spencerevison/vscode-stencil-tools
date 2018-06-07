@@ -7,7 +7,7 @@ import { Config } from '../config.interface';
 
 export default function generateComponent(uri: any) {
     const workspace = vscode.workspace;
-    const extensionTitle = 'stencilGenerator';
+    const extensionTitle = 'stencilTools';
 
     let configPrefix: string = extensionTitle;
     let config: Config = <Config>workspace.getConfiguration(configPrefix);

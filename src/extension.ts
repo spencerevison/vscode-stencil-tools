@@ -13,6 +13,7 @@ import StartProject, { STENCIL_STARTER } from './commands/start-project';
 import GenerateComponent from './commands/generate-component';
 import GenerateTestFromComponent from './commands/generate-test-from-component';
 
+export const extensionTitle = 'stencilTools';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {

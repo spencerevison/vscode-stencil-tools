@@ -46,39 +46,39 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Stencil Generator configuration",
+      "title": "Stencil Tools configuration",
       "properties": {
-        "stencilGenerator.quotes": {
+        "stencilTools.quotes": {
           "type": "string",
           "default": "single",
           "description": "Defines the quote style (\"single\" or \"double\") used in all templates"
         },
-        "stencilGenerator.generateFolder": {
+        "stencilTools.generateFolder": {
           "type": "boolean",
           "default": true,
           "description": "Determines whether component files are generated within their own folder (true) or outside of a folder (false)"
         },
-        "stencilGenerator.componentsDirectory": {
+        "stencilTools.componentsDirectory": {
           "type": "string",
           "default": "./src/components",
           "description": "Determines the directory where components generated from the Command Palette are placed. Defaults to \"./src/components\""
         },
-        "stencilGenerator.component.create": {
+        "stencilTools.component.create": {
           "type": "boolean",
           "default": true,
           "description": "Determines if a component file should be created when a new component is generated"
         },
-        "stencilGenerator.component.extension": {
+        "stencilTools.component.extension": {
           "type": "string",
           "default": "tsx",
           "description": "The extension of a component file (no leading period)"
         },
-        "stencilGenerator.component.imports": {
+        "stencilTools.component.imports": {
           "type": ["array", false],
           "default": false,
           "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
         },
-        "stencilGenerator.component.prefix": {
+        "stencilTools.component.prefix": {
           "type": [
             "string",
             false
@@ -86,27 +86,27 @@
           "default": false,
           "description": "Prepends a given prefix to the selector for generated components. Best practice is to use a unique selector, unrelated to \"stencil\". See https://stenciljs.com/docs/style-guide#prefix"
         },
-        "stencilGenerator.component.shadow": {
+        "stencilTools.component.shadow": {
           "type": "boolean",
           "default": false,
           "description": "Determines whether generated components should be created with ShadowDOM support. Also changes the selector in Style from Scoped CSS to :root"
         },
-        "stencilGenerator.test.create": {
+        "stencilTools.test.create": {
           "type": "boolean",
           "default": true,
           "description": "Determines if a test file should be created when a new component is generated"
         },
-        "stencilGenerator.test.extension": {
+        "stencilTools.test.extension": {
           "type": "string",
           "default": "spec.tsx",
           "description": "The extension of a test file (no leading period). Typically something like \"spec.tsx\" (default) or \"test.tsx\""
         },
-        "stencilGenerator.style.create": {
+        "stencilTools.style.create": {
           "type": "boolean",
           "default": true,
           "description": "Determines if a style file should be created when a new component is generated"
         },
-        "stencilGenerator.style.extension": {
+        "stencilTools.style.extension": {
           "type": "string",
           "default": "css",
           "description": "The extension of a test file (no leading period). This is how you generate \"scss\" of \"sass\" files instead of \"css\" (default)"
