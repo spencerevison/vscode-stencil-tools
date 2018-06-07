@@ -10,8 +10,8 @@
   },
   "homepage": "https://github.com/natemoo-re/vscode-stencil-tools",
   "galleryBanner": {
-    "color": "#0273D4",
-    "theme": "dark"
+    "color": "#FFFFFF",
+    "theme": "light"
   },
   "repository": {
     "type": "git",

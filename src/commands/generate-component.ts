@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 
 import { FileHelper } from '../FileHelper';
 import { Config } from '../config.interface';
+import { extensionTitle } from '../extension';
 
 export default function generateComponent(uri: any) {
     const workspace = vscode.workspace;
-    const extensionTitle = 'stencilTools';
 
     let configPrefix: string = extensionTitle;
     let config: Config = <Config>workspace.getConfiguration(configPrefix);

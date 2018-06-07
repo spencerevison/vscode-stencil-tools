@@ -53,40 +53,20 @@ Easy to configure! See [#Configuration](#configuration)
 
 
 ## Configuration
-
-```js
-{
-        /* Defines the quote style ("single" or "double") used in all templates */
-        "stencilGenerator.quotes": "single",
-        /* Determines whether component files are generated within their own folder (true) or outside of a folder (false) */
-        "stencilGenerator.generateFolder": true,
-        /* Determines the directory where components generated from the Command Palette are placed */
-        "stencilGenerator.componentsDirectory": "./src/components",
-        /* Determines if a component file should be created when a new component is generated */
-        "stencilGenerator.component.create": true,
-        /* The extension of a component file (no leading period) */
-        "stencilGenerator.component.extension": "tsx",
-        /* A list of additional imports from '@stencil/core' to be included when a component is generated */
-        "stencilGenerator.component.imports": false,
-        /* Prepends a given prefix to the selector for generated components. 
-         * Best practice is to use a unique selector, unrelated to "stencil". 
-         * See https://stenciljs.com/docs/style-guide#prefix */
-        "stencilGenerator.component.prefix": false,
-        /* Determines whether generated components should be created with ShadowDOM support. 
-         * Also changes the selector in Style from Scoped CSS to :host */
-        "stencilGenerator.component.shadow": false,
-        /* Determines if a test file should be created when a new component is generated */
-        "stencilGenerator.test.create": true,
-        /* The extension of a test file (no leading period).
-         * Typically something like "spec.tsx" (default) or "test.tsx" */
-        "stencilGenerator.test.extension": "spec.tsx",
-        /* Determines if a style file should be created when a new component is generated */
-        "stencilGenerator.style.create": true,
-        /* The extension of a test file (no leading period). 
-         * This is how you generate "scss" of "sass" files instead of "css" (default) */
-        "stencilGenerator.style.extension": "css"
-}
-```
+| Property                          | Default Value         | Description                                                                                                       |
+|---------------------------------- |---------------------- |------------------------------------------------------------------------------------------------------------------ |
+stencilTools.quotes                 | "single"              | Defines the quote style ("single" or "double") used in all templates                                              |
+stencilTools.generateFolder         | true                  | Determines whether component files are generated within their own folder (true) or outside of a folder (false)    |
+stencilTools.componentsDirectory    | "./src/components"    | Determines the directory where components generated from the Command Palette are placed                           |
+stencilTools.component.create       | true                  | Determines if a component file should be created when a new component is generated                                |
+stencilTools.component.extension    | "tsx"                 | The extension of a component file (no leading period)                                                             |
+stencilTools.component.imports      | false                 | A list of additional imports from '@stencil/core' to be included when a component is generated                    |
+stencilTools.component.prefix       | false                 | Prepends a given prefix to the selector for generated components. Best practice is to use a unique selector, unrelated to "stencil". See the [Stencil Docs](https://stenciljs.com/docs/style-guide#prefix)    |
+stencilTools.component.shadow       | false                 | Determines whether generated components should be created with ShadowDOM support. Also changes the selector in Style from Scoped CSS to :host |
+stencilTools.test.create            | true                  | Determines if a test file should be created when a new component is generated                                     |
+stencilTools.test.extension         | "spec.tsx"            | The extension of a test file (no leading period). Typically something like "spec.tsx" (default) or "test.tsx"     |
+stencilTools.style.create           | true                  | Determines if a style file should be created when a new component is generated                                    |
+stencilTools.style.extension        | "css"                 | The extension of a test file (no leading period). This is how you generate "scss" of "sass" files instead of "css" (default)                  |
 
 ## Changelog
 #### 0.0.1 (2018-06-05)
