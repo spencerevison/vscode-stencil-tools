@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.executeCommand('setContext', 'isStencilProject', true);
     registerCommands(context);
-    registerSnippets(context);
+    registerSnippets();
 }
 
 export function deactivate() {
