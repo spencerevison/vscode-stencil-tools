@@ -40,9 +40,10 @@
     "onCommand:extension.stencilTools.openDocs",
     "onCommand:extension.stencilTools.startProjectComponent",
     "onCommand:extension.stencilTools.startProjectApp",
-    "onCommand:extension.stencilTools.generateComponentFilesFromCommandPalette",
-    "onCommand:extension.stencilTools.generateComponentFiles",
-    "onCommand:extension.stencilTools.generateTestFromComponent"
+    "onCommand:extension.stencilTools.generateComponent",
+    "onCommand:extension.stencilTools.generateComponentFromExplorer",
+    "onCommand:extension.stencilTools.generateTest",
+    "onCommand:extension.stencilTools.generateTestFromExplorer"
   ],
   "main": "./out/src/extension",
   "icon": "assets/images/icon.png",
@@ -74,7 +75,7 @@
         "stencilTools.component.extension": {
           "type": "string",
           "default": "tsx",
-          "description": "The extension of a component file (no leading period)"
+          "description": "The extension of a component file"
         },
         "stencilTools.component.imports": {
           "type": [
@@ -104,8 +105,8 @@
         },
         "stencilTools.test.extension": {
           "type": "string",
-          "default": "spec.tsx",
-          "description": "The extension of a test file (no leading period). Typically something like \"spec.tsx\" (default) or \"test.tsx\""
+          "default": "spec.ts",
+          "description": "The extension of a test file. Typically something like \"spec.ts\" (default) or \"test.ts\""
         },
         "stencilTools.style.create": {
           "type": "boolean",
@@ -115,7 +116,7 @@
         "stencilTools.style.extension": {
           "type": "string",
           "default": "css",
-          "description": "The extension of a test file (no leading period). This is how you generate \"scss\" of \"sass\" files instead of \"css\" (default)"
+          "description": "The extension of a test file. This is how you generate \"scss\" of \"sass\" files instead of \"css\" (default)"
         }
       }
     },
@@ -136,16 +137,20 @@
         "category": "Stencil"
       },
       {
-        "command": "extension.stencilTools.generateComponentFiles",
+        "command": "extension.stencilTools.generateComponentFromExplorer",
         "title": "Generate Stencil Component"
       },
       {
-        "command": "extension.stencilTools.generateComponentFilesFromCommandPalette",
+        "command": "extension.stencilTools.generateComponent",
         "title": "New Component",
         "category": "Stencil"
       },
       {
-        "command": "extension.stencilTools.generateTestFromComponent",
+        "command": "extension.stencilTools.generateTestFromExplorer",
+        "title": "Generate Test for Stencil Component"
+      },
+      {
+        "command": "extension.stencilTools.generateTest",
         "title": "New Test for Component",
         "category": "Stencil"
       }
@@ -157,23 +162,32 @@
           "when": "isStencilProject"
         },
         {
-          "command": "extension.stencilTools.generateComponentFilesFromCommandPalette",
+          "command": "extension.stencilTools.generateComponent",
           "when": "isStencilProject"
         },
         {
-          "command": "extension.stencilTools.generateComponentFiles",
+          "command": "extension.stencilTools.generateComponentFromExplorer",
           "when": "!resourceIsFile"
         },
         {
-          "command": "extension.stencilTools.generateTestFromComponent",
+          "command": "extension.stencilTools.generateTest",
           "when": "isStencilProject && resourceExtname == .tsx"
+        },
+        {
+          "command": "extension.stencilTools.generateTestFromExplorer",
+          "when": "!resourceIsFile"
         }
       ],
       "explorer/context": [
         {
-          "command": "extension.stencilTools.generateComponentFiles",
+          "command": "extension.stencilTools.generateComponentFromExplorer",
           "when": "explorerResourceIsFolder && isStencilProject",
           "group": "StencilTools@0"
+        },
+        {
+          "command": "extension.stencilTools.generateTestFromExplorer",
+          "when": "resourceIsFile && resourceExtname == .tsx && isStencilProject",
+          "group": "StencilTools@1"
         }
       ]
     }

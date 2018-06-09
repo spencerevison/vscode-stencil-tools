@@ -1,4 +1,4 @@
-import { Config } from './config.interface';
+import { Config } from './config/interface';
 import * as vscode from 'vscode';
 import * as fse from 'fs-extra';
 import * as fs from 'fs';
@@ -85,6 +85,7 @@ export class FileHelper {
         let testContent = fs.readFileSync(templateFileName).toString()
             .replace(/{fileName}/g, componentName)
             .replace(/{selector}/g, this.getSelector(componentName, config))
+            .replace(/{componentInterface}/g, this.getInterface(componentName, config))
             .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{quotes}/g, this.getQuotes(config));
 
@@ -137,9 +138,8 @@ export class FileHelper {
     }
 
     private static getSelector(componentName: string, config: Config) {
-        let prefix = config.component.prefix;
+        const prefix = config.component.prefix;
         if (prefix) {
-            if (prefix.endsWith('-')) { prefix = prefix.slice(0, -1) }
             return `${prefix}-${changeCase.paramCase(componentName)}`;
         } else {
             return changeCase.paramCase(componentName);
@@ -152,6 +152,11 @@ export class FileHelper {
 
     private static getImports(config: Config) {
         return (config.component.imports === false) ? '' : `, ${config.component.imports.join()}`;
+    }
+
+    private static getInterface(componentName: string, config: Config) {
+        const selector = this.getSelector(componentName, config);
+        return `HTML${changeCase.pascal(selector)}Element`;
     }
 
     private static getBlockOpenAndClose(config: Config): { open: string, close: string } {

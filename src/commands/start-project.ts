@@ -5,7 +5,7 @@ export enum STENCIL_STARTER {
     APP = 'https://github.com/ionic-team/stencil-app-starter'
 }
 
-export default function cloneRepo(repo: STENCIL_STARTER) {
+export function StartProject(repo: STENCIL_STARTER) {
     vscode.commands.executeCommand('git.clone', repo).then((res) => {
         console.log('CLONED!', res);
     });

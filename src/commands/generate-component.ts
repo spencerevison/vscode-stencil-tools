@@ -3,14 +3,12 @@ import * as changeCase from 'change-case';
 import { Observable } from 'rxjs';
 
 import { FileHelper } from '../FileHelper';
-import { Config } from '../config.interface';
-import { extensionTitle } from '../extension';
+import { GetConfig } from '../config/get';
 
-export default function generateComponent(uri: any) {
-    const workspace = vscode.workspace;
+export function GenerateComponent(uri: any) {
+    console.log('Generate Component');
 
-    let configPrefix: string = extensionTitle;
-    let config: Config = <Config>workspace.getConfiguration(configPrefix);
+    const config = GetConfig();
 
     // Display a dialog to the user
     let enterComponentNameDialog$ = Observable.from(

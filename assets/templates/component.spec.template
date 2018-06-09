@@ -7,7 +7,7 @@ describe({quotes}{selector}{quotes}, () => {
   });
 
   describe({quotes}rendering{quotes}, () => {
-    let element: HTML{className}Element;
+    let element: {componentInterface};
     let testWindow: TestWindow;
     beforeEach(async () => {
       testWindow = new TestWindow();
