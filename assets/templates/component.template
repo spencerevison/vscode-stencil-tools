@@ -7,6 +7,8 @@ import { Component{additionalImports} } from {quotes}@stencil/core{quotes};
 })
 export class {className} {
 
+    {cursor}
+
     render() {
         return (
             <div>

@@ -85,7 +85,7 @@ export class FileHelper {
         let testContent = fs.readFileSync(templateFileName).toString()
             .replace(/{fileName}/g, componentName)
             .replace(/{selector}/g, this.getSelector(componentName, config))
-            .replace(/{componentInterface}/g, this.getInterface(componentName, config))
+            .replace(/{componentInterface}/g, this.getInterface(this.getSelector(componentName, config)))
             .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{quotes}/g, this.getQuotes(config));
 
@@ -107,6 +107,7 @@ export class FileHelper {
         let testContent = fs.readFileSync(templateFileName).toString()
             .replace(/{fileName}/g, fileImport)
             .replace(/{selector}/g, componentSelector)
+            .replace(/{componentInterface}/g, this.getInterface(componentSelector))
             .replace(/{className}/g, componentClass)
             .replace(/{quotes}/g, this.getQuotes(config));
 
@@ -127,11 +128,6 @@ export class FileHelper {
         // }
     }
 
-    public static getDefaultConfig(): any {
-        let content = fs.readFileSync( this.assetRootDir + '/config/config.json' ).toString();
-        content = content.replace(/\${workspaceRoot}/g, vscode.workspace.rootPath);
-        return JSON.parse(content);
-    }
 
     public static resolveWorkspaceRoot(path: string): string {
         return path.replace('${workspaceRoot}', vscode.workspace.rootPath);
@@ -154,8 +150,7 @@ export class FileHelper {
         return (config.component.imports === false) ? '' : `, ${config.component.imports.join()}`;
     }
 
-    private static getInterface(componentName: string, config: Config) {
-        const selector = this.getSelector(componentName, config);
+    private static getInterface(selector: string) {
         return `HTML${changeCase.pascal(selector)}Element`;
     }
 

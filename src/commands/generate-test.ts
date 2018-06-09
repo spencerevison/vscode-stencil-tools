@@ -6,6 +6,8 @@ import { FileHelper } from '../FileHelper';
 import * as json from 'jsonic';
 import { GetConfig } from '../config/get';
 
+import { moveCursorToDefaultPosition } from './utils';
+
 function getComponentInfo(uri: vscode.Uri) {
     return vscode.workspace.openTextDocument(uri).then((doc) => {
         const content = doc.getText();
@@ -62,7 +64,9 @@ export async function GenerateTest(uri: vscode.Uri|null) {
         .do(editor => {
             if (!editor) {
                 throw new Error('Could not open file!')
-            };
+            } else {
+                moveCursorToDefaultPosition(editor);
+            }
         })
         .subscribe(
             () => vscode.window.setStatusBarMessage('Test successfuly created!', 5000),

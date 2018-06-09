@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { FileHelper } from '../FileHelper';
 import { GetConfig } from '../config/get';
 
+import { moveCursorToDefaultPosition } from './utils';
+
 export function GenerateComponent(uri: any) {
     console.log('Generate Component');
 
@@ -50,7 +52,9 @@ export function GenerateComponent(uri: any) {
         .do(editor => {
             if (!editor) {
                 throw new Error('Could not open file!')
-            };
+            } else {
+                moveCursorToDefaultPosition(editor);
+            }
         })
         .subscribe(
             () => vscode.window.setStatusBarMessage('Component Successfuly created!', 5000),

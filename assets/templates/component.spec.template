@@ -17,7 +17,8 @@ describe({quotes}{selector}{quotes}, () => {
       });
     });
 
-    // Write you Unit Tests here - https://stenciljs.com/docs/unit-testing
+    // See https://stenciljs.com/docs/unit-testing
+    {cursor}
 
   });
 });
