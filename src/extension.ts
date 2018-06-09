@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
     ])
 
     commands.forEach((action, command) => {
-        let disposable = vscode.commands.registerCommand(`extension.${command}`, action);
+        let disposable = vscode.commands.registerCommand(`extension.${extensionTitle}.${command}`, action);
         context.subscriptions.push(disposable);
     })
 }

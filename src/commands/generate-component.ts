@@ -16,7 +16,7 @@ export default function generateComponent(uri: any) {
     let enterComponentNameDialog$ = Observable.from(
         vscode.window.showInputBox(
             { prompt: 'Please enter the component name' }
-        ));
+        ))
 
 
     enterComponentNameDialog$

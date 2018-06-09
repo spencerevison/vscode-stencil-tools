@@ -29,17 +29,20 @@
     "Other"
   ],
   "keywords": [
-    "vscode-stencil",
     "stencil",
     "stencil component",
     "stencil generate component",
-    "vscode stencil",
     "typescript",
     "tsx"
   ],
   "activationEvents": [
     "workspaceContains:**/stencil.config.js",
-    "onCommand:extension.generateComponentFiles"
+    "onCommand:extension.stencilTools.openDocs",
+    "onCommand:extension.stencilTools.startProjectComponent",
+    "onCommand:extension.stencilTools.startProjectApp",
+    "onCommand:extension.stencilTools.generateComponentFilesFromCommandPalette",
+    "onCommand:extension.stencilTools.generateComponentFiles",
+    "onCommand:extension.stencilTools.generateTestFromComponent"
   ],
   "main": "./out/src/extension",
   "icon": "assets/images/icon.png",
@@ -118,31 +121,31 @@
     },
     "commands": [
       {
-        "command": "extension.openDocs",
+        "command": "extension.stencilTools.openDocs",
         "title": "Open Docs",
         "category": "Stencil"
       },
       {
-        "command": "extension.startProjectComponent",
+        "command": "extension.stencilTools.startProjectComponent",
         "title": "Start Project - Component",
         "category": "Stencil"
       },
       {
-        "command": "extension.startProjectApp",
+        "command": "extension.stencilTools.startProjectApp",
         "title": "Start Project - App",
         "category": "Stencil"
       },
       {
-        "command": "extension.generateComponentFiles",
+        "command": "extension.stencilTools.generateComponentFiles",
         "title": "Generate Stencil Component"
       },
       {
-        "command": "extension.generateComponentFilesFromCommandPalette",
+        "command": "extension.stencilTools.generateComponentFilesFromCommandPalette",
         "title": "New Component",
         "category": "Stencil"
       },
       {
-        "command": "extension.generateTestFromComponent",
+        "command": "extension.stencilTools.generateTestFromComponent",
         "title": "New Test for Component",
         "category": "Stencil"
       }
@@ -150,35 +153,27 @@
     "menus": {
       "commandPalette": [
         {
-          "command": "extension.startProjectComponent",
+          "command": "extension.stencilTools.openDocs",
           "when": "isStencilProject"
         },
         {
-          "command": "extension.startProjectApp",
+          "command": "extension.stencilTools.generateComponentFilesFromCommandPalette",
           "when": "isStencilProject"
         },
         {
-          "command": "extension.openDocs",
-          "when": "isStencilProject"
-        },
-        {
-          "command": "extension.generateComponentFilesFromCommandPalette",
-          "when": "isStencilProject"
-        },
-        {
-          "command": "extension.generateComponentFiles",
+          "command": "extension.stencilTools.generateComponentFiles",
           "when": "!resourceIsFile"
         },
         {
-          "command": "extension.generateTestFromComponent",
+          "command": "extension.stencilTools.generateTestFromComponent",
           "when": "isStencilProject && resourceExtname == .tsx"
         }
       ],
       "explorer/context": [
         {
-          "command": "extension.generateComponentFiles",
+          "command": "extension.stencilTools.generateComponentFiles",
           "when": "explorerResourceIsFolder && isStencilProject",
-          "group": "Stencil@0"
+          "group": "StencilTools@0"
         }
       ]
     }
