@@ -15,12 +15,17 @@ export interface TestConfig extends WorkspaceConfiguration {
     create?: boolean,
     extension?: string
 };
+export interface SnippetConfig extends WorkspaceConfiguration {
+    enabled?: boolean,
+    prefix?: string
+};
 
 
 export interface Config extends WorkspaceConfiguration {
     quotes?: 'single' | 'double',
     generateFolder?: boolean,
     componentsDirectory?: string,
+    snippet: SnippetConfig,
     component: ComponentConfig,
     style: StyleConfig,
     test: TestConfig
