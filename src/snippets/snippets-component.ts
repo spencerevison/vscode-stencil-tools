@@ -72,56 +72,57 @@ export const COMPONENT_SNIPPETS: Snippet[] = [
     ...LIFECYCLE_SNIPPETS,
     {
         name: 'prop',
-        description: 'Props are custom attribute/properties exposed publicly on the element that developers can provide values for',
+        description: 'Props are custom attribute/properties exposed publicly on the element that developers can provide values for.',
         body: "@Prop() ${1:propName}: ${2|any,string,boolean,number|};",
         preview: "@Prop() newProp: any;",
         autoImport: 'Prop'
     },
     {
         name: 'watch',
-        description: "Add a new watch decorator to make the function be invoked immediately before and after a member decorated with Prop is changed.",
+        description: "When a user updates a property, Watch will fire what ever method it's attached to and pass that methd the new value of the prop along with the old value.",
         body: [
-            "@Watch('${1:myProp}')",
+            "@Watch('${1:propName}')",
             "${1}Changed() {",
             "\tconst { $1 } = this;",
-            "\t${0:console.log('${1:myProp} changed to ', $1)}",
+            "\t${0:console.log('$1 changed to ', $1);}",
             "}"
         ],
         preview: [
-            "@Watch('myProp')",
-            "watchHandler(newValue) {",
-            "\tconsole.log('The value of ${1:myProp} is: ', newValue);",
+            "@Watch('propName')",
+            "propNameChanged() {",
+            "\tconst { propName } = this;",
+            "\tconsole.log('propName changed to ', propName);",
             "}"
         ],
         autoImport: 'Watch'
     },
     {
         name: 'state',
-        description: "Add a new State decorator to manage internal state. Decorating a class member with State will trigger efficient re-renders when the value is set, but it won't be accessible through the Element.",
+        description: "The @State() decorator can be used to manage internal data for a component. Any changes to a @State() property will cause the components render function to be called again.",
         body: "@State() ${1:stateName}: ${2|any,string,boolean,number|};",
-        preview: "@State() newState: any",
+        preview: "@State() stateName: any",
         autoImport: 'State'
     },
     {
         name: 'method',
         body: [
             "@Method()",
-            "${1:methodName}($2): ${3:any} {",
+            "${1:methodName}($2) {",
             "\t$0",
             "}"
         ],
         preview: [
             "@Method()",
-            "publicMethod() {",
-            "\t|",
+            "methodName() {",
+            "\t",
             "}"
         ],
-        description: "Add a Method decorator to expose the function on the public API. Functions decorated with the @Method() decorator can be called directly from the element.",
+        description: "The @Method() decorator is used to expose methods on the public API. Functions decorated with the @Method() decorator can be called directly from the element.",
         autoImport: 'Method'
     },
     {
         name: 'element',
-        description: "Add a new Element decorator to get access to the host element within the class instance.",
+        description: "The @Element() decorator is how to get access to the host element within the class instance. This returns an instance of an HTMLElement, so standard DOM methods/events can be used here.",
         body: "@Element() ${1:element}: HTMLElement;",
         preview: "@Element() element: HTMLElement;",
         autoImport: 'Element'
@@ -129,25 +130,25 @@ export const COMPONENT_SNIPPETS: Snippet[] = [
     {
         name: 'event',
         body: "@Event() ${1:eventName}: EventEmitter<${2:any}>;",
-        preview: "@Event() newCustomEvent: EventEmitter;",
-        description: "Add a new Event emitter to dispatch Custom DOM events up for other components to handle.",
+        preview: "@Event() eventName: EventEmitter<any>;",
+        description: "The @Event() decorator allows a Component to dispatch Custom DOM events for other components to handle.",
         autoImport: 'Event, EventEmitter'
     },
     {
         name: 'listen',
         body: [
             "@Listen('${1:eventName}')",
-                "protected ${2:on$1}() {",
-                "\t${0:console.log('$1 Recieved');}",
+            "protected ${2:${1}Handler}(event) {",
+                "\t${0:console.log('Received the \"$1\" event: ', event);}",
             "}"
         ],
         preview: [
-            "@Listen('myCustomEvent')",
-            "customEventHandler(event) {",
-            "\tconsole.log('Received the custom event: ', event);",
+            "@Listen('eventName')",
+            "protected eventNameHandler(event) {",
+            "\tconsole.log('Received the \"$1\" event: ', event);",
             "}"
         ],
-        description: "Add a new Listen decorator. The Listen decorator is for listening and responding to DOM events from a child.",
+        description: "The Listen() decorator is for handling events dispatched from @Events.",
         autoImport: 'Listen'
     }
 ];

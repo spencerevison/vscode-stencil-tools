@@ -38,12 +38,7 @@
   "activationEvents": [
     "workspaceContains:**/stencil.config.js",
     "workspaceContains:**/.stencilTools",
-    "onCommand:extension.stencilTools.openDocs",
-    "onCommand:extension.stencilTools.startProject",
-    "onCommand:extension.stencilTools.generateComponent",
-    "onCommand:extension.stencilTools.generateComponentFromExplorer",
-    "onCommand:extension.stencilTools.generateTest",
-    "onCommand:extension.stencilTools.generateTestFromExplorer"
+    "onCommand:extension.stencilTools.startProject"
   ],
   "main": "./out/src/extension",
   "icon": "assets/images/icon.png",
@@ -52,6 +47,11 @@
       "type": "object",
       "title": "Stencil Tools configuration",
       "properties": {
+        "stencilTools.newProjectDirectory": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "An absolute path that acts as the default location when starting a new project."
+        },
         "stencilTools.quotes": {
           "type": "string",
           "default": "single",

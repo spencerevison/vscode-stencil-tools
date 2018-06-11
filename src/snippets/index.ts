@@ -1,2 +1,3 @@
-export * from './component-snippets';
-export * from './test-snippets';
+export * from './snippets-component';
+export * from './snippets-test';
+export * from './snippets-keydown';

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { COMPONENT_SNIPPETS } from './index';
+import { COMPONENT_SNIPPETS, TEST_SNIPPETS, KEYDOWN_SNIPPETS } from './index';
 import { Snippet } from './interface';
 import { GetConfig } from '../config/get';
 import { removeTrailing } from '../config/utils';
@@ -46,6 +46,9 @@ function registerSnippetsTypescriptReact(config: Config) {
 
         return createSnippet(snippet, 'tsx');
     })
+    const keydownSnippets: vscode.CompletionItem[] = KEYDOWN_SNIPPETS.map(member => {
+        return new vscode.CompletionItem(member, vscode.CompletionItemKind.EnumMember);
+    })
 
     vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'typescriptreact' }, {
         provideCompletionItems: (document: vscode.TextDocument, position: vscode.Position) => {
@@ -59,8 +62,33 @@ function registerSnippetsTypescriptReact(config: Config) {
             return items;
         }
     })
+
+    vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'typescriptreact' }, {
+        provideCompletionItems: (document: vscode.TextDocument, position: vscode.Position) => {
+            const items = [];
+            const ln = document.lineAt(position.line);
+            const match = /\@Listen\((.*)\)/.exec(ln.text);
+            if (match.length) {
+                console.log('Inside a Listen Decorator!', match[0]);
+                const isKeydown = /keydown/g.test(match[0]);
+                if (isKeydown) { items.push(...keydownSnippets); }
+            }
+            return items;
+        }
+    }, '.')
+
 }
 
 function registerSnippetsTypescript(config: Config) {
     if (!config.snippet.enabled) { return; }
+
+    const testSnippets = TEST_SNIPPETS.map(snippet => {
+        snippet.name = `${removeTrailing(config.snippet.prefix, '-')}-${snippet.name}`;
+        
+        return createSnippet(snippet, 'ts');
+    });
+
+    vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'typescript', pattern: '**/*.spec.ts' }, {
+        provideCompletionItems: () => [...testSnippets]
+    })
 }
