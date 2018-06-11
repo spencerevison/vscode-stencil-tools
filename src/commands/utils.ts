@@ -5,13 +5,9 @@ function getCursorPosition(document: vscode.TextDocument): vscode.Range {
     let cursorFound = false;
     for (let i = 0; i < document.lineCount - 1 && !cursorFound; i++) {
         const ln = document.lineAt(i);
-        console.log('Testing for cursor', ln);
         if (/{cursor}/g.test(ln.text)) {
             cursorFound = true;
-            console.log('Testing for cursor', true, ln.lineNumber);
             position = new vscode.Range(ln.lineNumber, ln.firstNonWhitespaceCharacterIndex, ln.lineNumber, ln.text.length);
-        } else {
-            console.log('Testing for cursor', false);
         }
     }
     return position;
@@ -21,7 +17,6 @@ function removeCursorPlaceholder(editor: vscode.TextEditor, range: vscode.Range)
 }
 export async function moveCursorToDefaultPosition(editor: vscode.TextEditor) {
     const range = getCursorPosition(editor.document);
-    console.log(range);
     editor.selections = [new vscode.Selection(range.start, range.start)];
     removeCursorPlaceholder(editor, range);
     await editor.document.save();

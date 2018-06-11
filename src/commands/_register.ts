@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { extensionTitle } from '../extension';
 import {
     OpenDocs,
-    StartProject, STENCIL_STARTER,
+    StartProject,
     GenerateComponent,
     GenerateTest
 } from './index';
@@ -11,8 +11,7 @@ import {
 export default function registerCommands(context: vscode.ExtensionContext) {
     const commands = new Map([
         ['openDocs', () => OpenDocs()],
-        ['startProjectComponent', () => StartProject(STENCIL_STARTER.COMPONENT)],
-        ['startProjectApp', () => StartProject(STENCIL_STARTER.APP)],
+        ['startProject', async () => await StartProject()],
         ['generateComponent', () => GenerateComponent(null)],
         ['generateComponentFromExplorer', (uri) => GenerateComponent(uri)],
         ['generateTest', () => GenerateTest(null)],

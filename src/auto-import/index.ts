@@ -1,15 +1,17 @@
 import * as vscode from 'vscode';
-import { getStencilImportLine, getStencilImportList, getAutoImportRange } from './utils';
+import { GetConfig } from '../config/get';
+import { getStencilImportLine, getStencilImportList, getAutoImportRange, alphabetizeImports } from './utils';
 
 export default function getAutoImportEdits(document: vscode.TextDocument, insertText: string): vscode.TextEdit[] {
-    console.log(`AutoImport for ${insertText}`)
+    const alphabetize = GetConfig().component.alphabetizeImports;
     const edits = [];
     const line = getStencilImportLine(document);
     const imports = getStencilImportList(line);
     if (imports) {
         if (imports.findIndex(item => item === insertText) === -1) {
             imports.push(insertText)
-            const edit = new vscode.TextEdit(getAutoImportRange(line), ` ${imports.join(', ')} `)
+            const importList = alphabetize ? alphabetizeImports(imports) : imports;
+            const edit = new vscode.TextEdit(getAutoImportRange(line), ` ${importList.join(', ')} `)
             edits.push(edit)
         }
     }

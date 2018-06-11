@@ -1,4 +1,4 @@
-import { Component{additionalImports} } from {quotes}@stencil/core{quotes};
+import { Component{defaultImports} } from {quotes}@stencil/core{quotes};
 
 
 @Component({

@@ -8,8 +8,6 @@ import { GetConfig } from '../config/get';
 import { moveCursorToDefaultPosition } from './utils';
 
 export function GenerateComponent(uri: any) {
-    console.log('Generate Component');
-
     const config = GetConfig();
 
     // Display a dialog to the user

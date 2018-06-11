@@ -1,14 +1,20 @@
 import { Config } from './config/interface';
+import { removeLeading, removeTrailing } from './config/utils';
 import * as vscode from 'vscode';
 import * as fse from 'fs-extra';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as changeCase from 'change-case';
+import { alphabetizeImports } from './auto-import/utils';
 import { Observable } from 'rxjs';
 
 export class FileHelper {
     private static createFile = <(file: string, data: string) => Observable<{}>>Observable.bindNodeCallback(fse.outputFile);
     private static assetRootDir: string = path.join(__dirname, '../../assets');
+
+    private static getFilename(componentDir: string, componentName: string, config: Config, type: 'component' | 'style' | 'test') {
+        return `${componentDir}/${componentName}.${removeLeading(config[type].extension, '.')}`;
+    }
 
     public static createComponent(componentDir: string, componentName: string, config: Config): Observable<string> {
         let templateFileName = this.assetRootDir + '/templates/component.template';
@@ -17,14 +23,14 @@ export class FileHelper {
         }
 
         let componentContent = fs.readFileSync(templateFileName).toString()
-            .replace(/{additionalImports}/g, this.getImports(config))
+            .replace(/{defaultImports}/g, this.getDefaultImports(config))
             .replace(/{selector}/g, this.getSelector(componentName, config))
             .replace(/{styleUrl}/g, `${componentName}.${config.style.extension}`)
             .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{shadow}/g, this.getShadow(config))
             .replace(/{quotes}/g, this.getQuotes(config));
 
-        let filename = `${componentDir}/${componentName}.${config.component.extension}`;
+        let filename = this.getFilename(componentDir, componentName, config, 'component');
 
         if (config.component.create) {
             return this.createFile(filename, componentContent)
@@ -49,7 +55,8 @@ export class FileHelper {
             .replace(/{blockClose}/g, block.close);
 
 
-        let filename = `${componentDir}/${componentName}.${style.extension}`;
+        let filename = this.getFilename(componentDir, componentName, config, 'style');
+
         if (style.create) {
             return this.createFile(filename, styleContent)
                 .map(result => filename);
@@ -89,7 +96,7 @@ export class FileHelper {
             .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{quotes}/g, this.getQuotes(config));
 
-        let filename = `${componentDir}/${componentName}.${config.test.extension}`;
+        let filename = this.getFilename(componentDir, componentName, config, 'test');
 
         if (config.test.create) {
             return this.createFile(filename, testContent)
@@ -111,21 +118,15 @@ export class FileHelper {
             .replace(/{className}/g, componentClass)
             .replace(/{quotes}/g, this.getQuotes(config));
 
-        let filename = `${fromFilePath}.${config.test.extension}`;
+        let filename = `${fromFilePath}.${removeLeading(config.test.extension, '.')}`;
         try {
             if (fs.lstatSync(filename).isFile()) {
                 return Observable.of('');
             }
         } catch(e) {
-            console.log(filename)
             return this.createFile(filename, testContent)
                 .map(result => filename);
         }
-        // if (filename && fs.lstatSync(filename).isFile()) {
-        //     throw new Error();
-        // } else {
-            
-        // }
     }
 
 
@@ -134,8 +135,9 @@ export class FileHelper {
     }
 
     private static getSelector(componentName: string, config: Config) {
-        const prefix = config.component.prefix;
+        let prefix = config.component.prefix;
         if (prefix) {
+            prefix = removeTrailing(prefix, '-');
             return `${prefix}-${changeCase.paramCase(componentName)}`;
         } else {
             return changeCase.paramCase(componentName);
@@ -146,8 +148,15 @@ export class FileHelper {
         return config.component.shadow ? ',\n    shadow: true' : ''
     }
 
-    private static getImports(config: Config) {
-        return (config.component.imports === false) ? '' : `, ${config.component.imports.join()}`;
+    private static getDefaultImports(config: Config) {
+        const imports = config.component.defaultImports;
+        if (imports === false) {
+            return '';
+        } else {
+            const alphabetize = config.component.alphabetizeImports;
+            const importList = alphabetize ? alphabetizeImports(imports) : imports;
+            return importList.join(", ");
+        }
     }
 
     private static getInterface(selector: string) {

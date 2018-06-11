@@ -29,3 +29,15 @@ export function getAutoImportRange(line: vscode.TextLine): vscode.Range {
     const end = new vscode.Position(line.lineNumber, line.text.indexOf('}'));
     return new vscode.Range(start, end);
 }
+
+export function alphabetizeImports(imports: string[]) {
+    const mapped = imports.map((value, index) => {
+        return { index, value: value.toLowerCase() }
+    }).sort((a, b) => {
+        if (a.value > b.value) { return 1; }
+        if (a.value < b.value) { return -1; }
+        return 0;
+    });
+    
+    return mapped.map((el) => imports[el.index]);
+}

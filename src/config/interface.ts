@@ -5,7 +5,8 @@ export interface ComponentConfig extends WorkspaceConfiguration {
     extension?: string,
     prefix?: string,
     shadow?: boolean,
-    imports?: string[]|false
+    defaultImports?: string[] | false;
+    alphabetizeImports?: boolean;
 }
 export interface StyleConfig extends WorkspaceConfiguration {
     create?: boolean,
@@ -25,6 +26,7 @@ export interface Config extends WorkspaceConfiguration {
     quotes?: 'single' | 'double',
     generateFolder?: boolean,
     componentsDirectory?: string,
+    newProjectDirectory?: '',
     snippet: SnippetConfig,
     component: ComponentConfig,
     style: StyleConfig,

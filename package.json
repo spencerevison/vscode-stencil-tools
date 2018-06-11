@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "engines": {
-    "vscode": "^1.18.0"
+    "vscode": "^1.24.0"
   },
   "categories": [
     "Other"
@@ -37,9 +37,9 @@
   ],
   "activationEvents": [
     "workspaceContains:**/stencil.config.js",
+    "workspaceContains:**/.stencilTools",
     "onCommand:extension.stencilTools.openDocs",
-    "onCommand:extension.stencilTools.startProjectComponent",
-    "onCommand:extension.stencilTools.startProjectApp",
+    "onCommand:extension.stencilTools.startProject",
     "onCommand:extension.stencilTools.generateComponent",
     "onCommand:extension.stencilTools.generateComponentFromExplorer",
     "onCommand:extension.stencilTools.generateTest",
@@ -77,11 +77,16 @@
           "default": "tsx",
           "description": "The extension of a component file"
         },
-        "stencilTools.component.imports": {
+        "stencilTools.component.defaultImports": {
           "type": [
             "array",
             false
           ],
+          "default": false,
+          "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
+        },
+        "stencilTools.component.alphabetizeImports": {
+          "type": "boolean",
           "default": false,
           "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
         },
@@ -137,13 +142,8 @@
         "category": "Stencil"
       },
       {
-        "command": "extension.stencilTools.startProjectComponent",
-        "title": "Start Project - Component",
-        "category": "Stencil"
-      },
-      {
-        "command": "extension.stencilTools.startProjectApp",
-        "title": "Start Project - App",
+        "command": "extension.stencilTools.startProject",
+        "title": "Start New Project",
         "category": "Stencil"
       },
       {
@@ -177,7 +177,7 @@
         },
         {
           "command": "extension.stencilTools.generateComponentFromExplorer",
-          "when": "!resourceIsFile"
+          "when": "!resourceIsFile && resourceIsFile"
         },
         {
           "command": "extension.stencilTools.generateTest",
@@ -185,7 +185,7 @@
         },
         {
           "command": "extension.stencilTools.generateTestFromExplorer",
-          "when": "!resourceIsFile"
+          "when": "!resourceIsFile && resourceIsFile"
         }
       ],
       "explorer/context": [
@@ -205,6 +205,8 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "compile": "tsc -watch -p ./",
+    "clean": "rm -rf ./out",
+    "prebuild": "npm run clean",
     "build": "tsc -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
@@ -221,6 +223,7 @@
     "fs": "0.0.1-security",
     "fs-extra": "^0.30.0",
     "jsonic": "^0.3.0",
-    "rxjs": "^5.0.0-rc.1"
+    "rxjs": "^5.0.0-rc.1",
+    "util.promisify": "^1.0.0"
   }
 }
