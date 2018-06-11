@@ -26,8 +26,8 @@ export function activate(context: vscode.ExtensionContext) {
 function doCheckWorkspace() {
     console.log('Checking workspace');
 
-    vscode.workspace.findFiles('**/stencil.config.js').then(() => {
-        vscode.commands.executeCommand('setContext', 'isStencilProject', true);
+    vscode.workspace.findFiles('**/stencil.config.js').then((uri) => {
+        if (uri.length) { vscode.commands.executeCommand('setContext', 'isStencilProject', true); }
     });
 
     vscode.workspace.findFiles('**/.stencilTools').then((uri) => {
