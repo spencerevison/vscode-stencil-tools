@@ -15,6 +15,10 @@ export function activate(context: vscode.ExtensionContext) {
     
     registerCommands(context);
     doCheckWorkspace();
+
+    vscode.workspace.onDidChangeWorkspaceFolders((e) => {
+        if (e.added) { doCheckWorkspace(); }
+    })
     
     if (vscode.window.activeTextEditor) {
         const doc = vscode.window.activeTextEditor.document;
@@ -24,14 +28,12 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function doCheckWorkspace() {
-    console.log('Checking workspace');
-
     vscode.workspace.findFiles('**/stencil.config.js').then((uri) => {
-        if (uri.length) { vscode.commands.executeCommand('setContext', 'isStencilProject', true); }
+        if (uri) { vscode.commands.executeCommand('setContext', 'isStencilProject', true); }
     });
 
     vscode.workspace.findFiles('**/.stencilTools').then((uri) => {
-        if (uri.length) { onStartedProjectOpen(uri); }
+        if (uri) { onStartedProjectOpen(uri); }
     });
 }
 

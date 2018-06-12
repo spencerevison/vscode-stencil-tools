@@ -48,7 +48,10 @@
       "title": "Stencil Tools configuration",
       "properties": {
         "stencilTools.newProjectDirectory": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "default": null,
           "description": "An absolute path that acts as the default location when starting a new project."
         },
@@ -211,11 +214,12 @@
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "devDependencies": {
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0",
-    "mocha": "^2.3.3",
+    "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
+    "@types/semver": "^5.5.0",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
   },
   "dependencies": {
     "@types/jsonic": "^0.3.0",
@@ -224,6 +228,7 @@
     "fs-extra": "^0.30.0",
     "jsonic": "^0.3.0",
     "rxjs": "^5.0.0-rc.1",
+    "semver": "^5.5.0",
     "util.promisify": "^1.0.0"
   }
 }

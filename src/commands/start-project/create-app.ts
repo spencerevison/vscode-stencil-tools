@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as semver from 'semver';
 import { exec } from 'child_process';
 
 
@@ -9,6 +10,8 @@ export async function createApp(p: vscode.Progress<{ message: string }>, repo: s
     await cdIntoNewApp(projectName);
     p.report({ message: `Preparing repo... ✂️` });
     await prepareRepo(docs);
+
+    await checkNodeVersion();
     return projectName;
 }
 
@@ -47,9 +50,23 @@ function prepareRepo(docs?: string) {
     });
 }
 
-export function installPackages() {
+async function checkNodeVersion() {
+    return new Promise<string>((resolve, reject) => {
+        exec(`npm -v`, (error, stdout, stderr) => {
+            if (error) {
+                reject(`Unable to install packages. Try running "npm install" yourself!`);
+            } else {
+                resolve(stdout.trim());
+            }
+        });
+    });
+}
+
+export async function installPackages() {
+    const version = await checkNodeVersion();
+    const command = semver.gt(version, '5.7.0') ? 'ci' : 'i';
     return new Promise((resolve, reject) => {
-        exec(`npm i`, (error) => {
+        exec(`npm ${command}`, (error) => {
             if (error) {
                 reject(`Unable to install packages. Try running "npm install" yourself!`);
             } else {

@@ -8,6 +8,7 @@ const readFile = promisify(fs.readFile);
 import { installPackages, cdIntoNewApp } from './create-app';
 
 export async function onStartedProjectOpen(uris: vscode.Uri[]) {
+    if (!uris[0]) { return; }
     const uri = uris[0];
     const dir = path.join(uri.fsPath, '../');
     const docsUrl = await readFile(uri.fsPath);

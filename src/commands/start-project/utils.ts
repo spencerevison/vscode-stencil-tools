@@ -16,7 +16,11 @@ export function getWorkspaceUri(workspaceFolders: vscode.WorkspaceFolder[]) {
     if (!workspaceFolders) {
         workspaceUri = getDefaultUri();
     } else {
-        workspaceUri = workspaceFolders[0].uri;
+        if (!workspaceFolders[0]) {
+            workspaceUri = getDefaultUri();
+        } else {
+            workspaceUri = workspaceFolders[0].uri;
+        }
     }
     return workspaceUri;
 }

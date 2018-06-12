@@ -50,7 +50,8 @@ export async function StartProject() {
                                     vscode.commands.executeCommand('vscode.openFolder', vscode.Uri.file(newUri));
                                     break;
                                 case addToWorkspace:
-                                    vscode.workspace.updateWorkspaceFolders(vscode.workspace.workspaceFolders.length, 0, { uri: vscode.Uri.file(newUri) });
+                                    const start = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders.length : 0;
+                                    vscode.workspace.updateWorkspaceFolders(start, 0, { uri: vscode.Uri.file(newUri) });
                                     break;
                             }
                         }
