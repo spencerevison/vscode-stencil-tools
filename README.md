@@ -1,5 +1,5 @@
-[![Version](http://vsmarketplacebadge.apphb.com/version/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools) 
-[![Installs](http://vsmarketplacebadge.apphb.com/installs/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools)
+[![Version](https://vsmarketplacebadge.apphb.com/version/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools) 
+[![Installs](https://vsmarketplacebadge.apphb.com/installs/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools)
 # Stencil Tools 
 
 ## Description
