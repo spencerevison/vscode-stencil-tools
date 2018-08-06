@@ -4,12 +4,14 @@ import {
     OpenDocs,
     StartProject,
     GenerateComponent,
-    GenerateTest
+    GenerateTest,
+    InstallPlugin
 } from './index';
 
 
 export default function registerCommands(context: vscode.ExtensionContext) {
     const commands = new Map([
+        ['installPlugin', () => InstallPlugin()],
         ['openDocs', () => OpenDocs()],
         ['startProject', async () => await StartProject()],
         ['generateComponent', () => GenerateComponent(null)],

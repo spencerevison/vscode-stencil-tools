@@ -141,6 +141,11 @@
     },
     "commands": [
       {
+        "command": "extension.stencilTools.installPlugin",
+        "title": "Install Plugin",
+        "category": "Stencil"
+      },
+      {
         "command": "extension.stencilTools.openDocs",
         "title": "Open Docs",
         "category": "Stencil"
@@ -171,6 +176,10 @@
     ],
     "menus": {
       "commandPalette": [
+        {
+          "command": "extension.stencilTools.installPlugin",
+          "when": "isStencilProject"
+        },
         {
           "command": "extension.stencilTools.openDocs",
           "when": "isStencilProject"
