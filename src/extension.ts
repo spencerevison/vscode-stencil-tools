@@ -31,6 +31,9 @@ function doCheckWorkspace() {
     vscode.workspace.findFiles('**/stencil.config.js').then((uri) => {
         if (uri) { vscode.commands.executeCommand('setContext', 'isStencilProject', true); }
     });
+    vscode.workspace.findFiles('**/stencil.config.ts').then((uri) => {
+        if (uri) { vscode.commands.executeCommand('setContext', 'isStencilProject', true); }
+    });
 
     vscode.workspace.findFiles('**/.stencilTools').then((uri) => {
         if (uri) { onStartedProjectOpen(uri); }
