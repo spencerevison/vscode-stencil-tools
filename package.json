@@ -2,7 +2,7 @@
   "name": "vscode-stencil-tools",
   "displayName": "Stencil Tools",
   "description": "Helpful utilities for StencilJS Projects",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "publisher": "natemoo-re",
   "author": {
     "name": "Nate Moore",
