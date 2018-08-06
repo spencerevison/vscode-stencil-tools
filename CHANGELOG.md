@@ -1,3 +1,5 @@
+# 2.0.1
+- Recognizes `stencil.config.ts` files as added in [@stencil/core@0.11.0 🍇](https://github.com/ionic-team/stencil/blob/master/CHANGELOG.md#-0110-2018-07-31)
 # 2.0.0
 ## Breaking Changes
 - Command names have been namespaced to `extension.stencilTools` rather than `extension`. Please update your keybindings (if any).

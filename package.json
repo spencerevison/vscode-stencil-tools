@@ -37,6 +37,7 @@
   ],
   "activationEvents": [
     "workspaceContains:**/stencil.config.js",
+    "workspaceContains:**/stencil.config.ts",
     "workspaceContains:**/.stencilTools",
     "onCommand:extension.stencilTools.startProject"
   ],
