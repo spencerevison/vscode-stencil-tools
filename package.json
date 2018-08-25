@@ -204,7 +204,12 @@
           "group": "StencilTools@1"
         }
       ]
-    }
+    },
+    "typescriptServerPlugins": [
+      {
+        "name": "typescript-plugin-stencil"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
@@ -219,6 +224,7 @@
     "@types/node": "^6.0.40",
     "@types/semver": "^5.5.0",
     "mocha": "^2.3.3",
+    "stencil-languageserver": "file:../../stencil-languageserver/server",
     "typescript": "^2.0.3",
     "vscode": "^1.0.0"
   },
@@ -230,6 +236,8 @@
     "jsonic": "^0.3.0",
     "rxjs": "^5.0.0-rc.1",
     "semver": "^5.5.0",
-    "util.promisify": "^1.0.0"
+    "typescript-plugin-stencil": "^0.1.1-alpha",
+    "util.promisify": "^1.0.0",
+    "vscode-languageclient": "^5.0.1"
   }
 }

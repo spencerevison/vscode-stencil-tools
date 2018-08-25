@@ -5,7 +5,6 @@ import * as fse from 'fs-extra';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as changeCase from 'change-case';
-import { alphabetizeImports } from './auto-import/utils';
 import { Observable } from 'rxjs';
 
 export class FileHelper {
@@ -153,9 +152,7 @@ export class FileHelper {
         if (imports === false) {
             return '';
         } else {
-            const alphabetize = config.component.alphabetizeImports;
-            const importList = alphabetize ? alphabetizeImports(imports) : imports;
-            return importList.join(", ");
+            return imports.join(", ");
         }
     }
 
