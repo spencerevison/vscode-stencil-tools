@@ -2,6 +2,10 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/natemoo-re.vscode-stencil-tools.svg)](https://marketplace.visualstudio.com/items?itemName=natemoo-re.vscode-stencil-tools)
 # Stencil Tools 
 
+> This repository will be archived after the upcoming **3.0.0** release.
+
+> Active development can be found in the [Stencil Tools](https://github.com/natemoo-re/stencil-tools) monorepo, which contains the Stencil Tools *suite*, which adds support for editors other than VS Code, zero-config component generation, intelligent editor features, and more.
+
 ## Description
 VS Code extension that makes working with [Stencil](https://stenciljs.com/) projects a breeze.
 
