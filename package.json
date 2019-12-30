@@ -220,7 +220,7 @@
     "@types/semver": "^5.5.0",
     "mocha": "^2.3.3",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.1.36"
   },
   "dependencies": {
     "@types/jsonic": "^0.3.0",
