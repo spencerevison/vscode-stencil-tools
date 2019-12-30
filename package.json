@@ -83,11 +83,13 @@
         },
         "stencilTools.component.defaultImports": {
           "type": [
-            "array",
-            false
+            "array"
           ],
-          "default": false,
-          "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
+          "default": [
+            "Component",
+            "h"
+          ],
+          "description": "A list of imports from '@stencil/core' to be included when a component is generated. Defaults to [\"Component\", \"h\"]"
         },
         "stencilTools.component.alphabetizeImports": {
           "type": "boolean",
@@ -114,8 +116,8 @@
         },
         "stencilTools.test.extension": {
           "type": "string",
-          "default": "spec.ts",
-          "description": "The extension of a test file. Typically something like \"spec.ts\" (default) or \"test.ts\""
+          "default": "e2e.ts",
+          "description": "The extension of a test file. Typically something like \"e2e.ts\" (default) or \"test.ts\""
         },
         "stencilTools.style.create": {
           "type": "boolean",
@@ -220,7 +222,7 @@
     "@types/semver": "^5.5.0",
     "mocha": "^2.3.3",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.1.36"
   },
   "dependencies": {
     "@types/jsonic": "^0.3.0",

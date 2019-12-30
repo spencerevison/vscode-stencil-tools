@@ -1,0 +1,11 @@
+import { newE2EPage } from {quotes}@stencil/core/testing{quotes};
+
+describe({quotes}{selector}{quotes}, () => {
+  it({quotes}renders{quotes}, async () => {
+    const page = await newE2EPage();
+
+    await page.setContent({quotes}<{selector}></{selector}>{quotes});
+    const element = await page.find({quotes}{selector}{quotes});
+    expect(element).toHaveClass({quotes}hydrated{quotes});
+  });{cursor}
+});
