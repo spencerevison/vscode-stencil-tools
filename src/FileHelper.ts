@@ -87,13 +87,11 @@ export class FileHelper {
     }
 
     public static createTest(componentDir: string, componentName: string, config: Config) {
-        let templateFileName = this.assetRootDir + '/templates/component.spec.template';
+        let templateFileName = this.assetRootDir + '/templates/component.e2e.template';
 
         let testContent = fs.readFileSync(templateFileName).toString()
             .replace(/{fileName}/g, componentName)
             .replace(/{selector}/g, this.getSelector(componentName, config))
-            .replace(/{componentInterface}/g, this.getInterface(this.getSelector(componentName, config)))
-            .replace(/{className}/g, changeCase.pascalCase(componentName))
             .replace(/{quotes}/g, this.getQuotes(config));
 
         let filename = this.getFilename(componentDir, componentName, config, 'test');
@@ -108,14 +106,12 @@ export class FileHelper {
     }
 
     public static createTestFromComponent(fromFilePath: string, componentClass: string, componentSelector: string, config: Config) {
-        let templateFileName = this.assetRootDir + '/templates/component.spec.template';
+        let templateFileName = this.assetRootDir + '/templates/component.e2e.template';
         let fileImport = `${path.basename(fromFilePath)}`;
 
         let testContent = fs.readFileSync(templateFileName).toString()
             .replace(/{fileName}/g, fileImport)
             .replace(/{selector}/g, componentSelector)
-            .replace(/{componentInterface}/g, this.getInterface(componentSelector))
-            .replace(/{className}/g, componentClass)
             .replace(/{quotes}/g, this.getQuotes(config));
 
         let filename = `${fromFilePath}.${removeLeading(config.test.extension, '.')}`;

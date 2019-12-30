@@ -114,8 +114,8 @@
         },
         "stencilTools.test.extension": {
           "type": "string",
-          "default": "spec.ts",
-          "description": "The extension of a test file. Typically something like \"spec.ts\" (default) or \"test.ts\""
+          "default": "e2e.ts",
+          "description": "The extension of a test file. Typically something like \"e2e.ts\" (default) or \"test.ts\""
         },
         "stencilTools.style.create": {
           "type": "boolean",
