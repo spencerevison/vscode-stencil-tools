@@ -83,11 +83,13 @@
         },
         "stencilTools.component.defaultImports": {
           "type": [
-            "array",
-            false
+            "array"
           ],
-          "default": false,
-          "description": "A list of additional imports from '@stencil/core' to be included when a component is generated"
+          "default": [
+            "Component",
+            "h"
+          ],
+          "description": "A list of imports from '@stencil/core' to be included when a component is generated. Defaults to [\"Component\", \"h\"]"
         },
         "stencilTools.component.alphabetizeImports": {
           "type": "boolean",
