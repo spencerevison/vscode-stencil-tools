@@ -7,5 +7,5 @@ describe({quotes}{selector}{quotes}, () => {
     await page.setContent({quotes}<{selector}></{selector}>{quotes});
     const element = await page.find({quotes}{selector}{quotes});
     expect(element).toHaveClass({quotes}hydrated{quotes});
-  });{cursor}
+  });
 });
